@@ -12,6 +12,11 @@ const loadTemperature = city => {
 
 const displayTemperature = data => {
 
+    if (!data || !data.main || !data.weather) {
+        // Handle error: data is not in the expected format
+        return;
+    }
+
     setInnerTextById('temperature', data.main.temp)
     setInnerTextById('condition', data.weather[0].main)
     setInnerTextById('wind-deg', data.wind.deg)
