@@ -5,6 +5,7 @@ const loadTemperature = city => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayTemperature(data))
+        .catch(error => console.log(error));
 
 }
 
