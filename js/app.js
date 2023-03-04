@@ -13,12 +13,13 @@ const displayTemperature = data => {
 
     setInnerTextById('temperature', data.main.temp)
     setInnerTextById('condition', data.weather[0].main)
-    setInnerTextById('wind-deg', parseInt(data.wind.deg))
-    setInnerTextById('wind-speed', parseFloat(data.wind.speed))
+    setInnerTextById('wind-deg', data.wind.deg)
+    setInnerTextById('wind-speed', data.wind.speed)
     console.log(data);
     console.log(data.weather[0].main);
     console.log(data.wind.deg);
     console.log(data.wind.speed);
+    setImgIcon(data.weather[0].icon);
 
 }
 
@@ -27,6 +28,16 @@ const setInnerTextById = (id, text) => {
     const element = document.getElementById(id);
     element.innerText = text;
 }
+
+const setImgIcon = (iconCode) => {
+    const iconElement = document.getElementById('weather-icon');
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+    iconElement.setAttribute('src', iconUrl);
+}
+
+
+
+
 
 document.getElementById('btn-search').addEventListener('click', function () {
     const searchField = document.getElementById('search-field');
@@ -38,3 +49,4 @@ document.getElementById('btn-search').addEventListener('click', function () {
 })
 
 loadTemperature('dhaka');
+setImgIcon();
