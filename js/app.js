@@ -5,18 +5,27 @@ const loadTemperature = city => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayTemperature(data))
+
 }
+
 
 const displayTemperature = data => {
 
     setInnerTextById('temperature', data.main.temp)
     setInnerTextById('condition', data.weather[0].main)
+    setInnerTextById('wind-deg', parseInt(data.wind.deg))
+    setInnerTextById('wind-speed', parseFloat(data.wind.speed))
+    console.log(data);
     console.log(data.weather[0].main);
+    console.log(data.wind.deg);
+    console.log(data.wind.speed);
+
 }
 
+
 const setInnerTextById = (id, text) => {
-    const temperature = document.getElementById(id);
-    temperature.innerText = text;
+    const element = document.getElementById(id);
+    element.innerText = text;
 }
 
 document.getElementById('btn-search').addEventListener('click', function () {
@@ -25,7 +34,7 @@ document.getElementById('btn-search').addEventListener('click', function () {
 
     // set city
     document.getElementById('city').innerText = city;
-    loadTemperature(city)
+    loadTemperature(city);
 })
 
 loadTemperature('dhaka');
